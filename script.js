@@ -1,13 +1,22 @@
 document.addEventListener('mousemove', (event) => {
-    const x = event.clientX; // Get the horizontal coordinate
-    const y = event.clientY; // Get the vertical coordinate
-    const coordinatesDisplay = document.getElementById('coordinates');
+    const x = event.clientX;
+    const y = event.clientY;
 
-    // Update the display with the new coordinates
+    // Update the display as before
+    const coordinatesDisplay = document.getElementById('coordinates');
     coordinatesDisplay.textContent = `${x}, ${y}`;
 
-    // Move the AI mouse
-    const aiMouse = document.getElementById('ai-mouse');
-    aiMouse.style.left = x + 'px';
-    aiMouse.style.top = y + 'px';
+    // Send this data to the server
+    fetch('/mouse-data', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ x, y }),
+    })
+    .then(response => response.text())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
 });
+
+
