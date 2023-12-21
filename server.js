@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const { MongoClient } = require('mongodb');
 
@@ -5,7 +7,7 @@ const app = express();
 const port = 3000;
 
 // Replace with your MongoDB Atlas connection string
-const mongoUri = 'mongodb+srv://quietloudlab:zHl3vSiLx8hiJzRl@cluster0.ln88wwl.mongodb.net/?retryWrites=true&w=majority';
+const mongoUri = process.env.MONGO_URI;
 
 app.use(express.static('.'));
 app.use(express.json());
