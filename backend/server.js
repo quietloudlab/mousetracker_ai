@@ -6,10 +6,9 @@ const { MongoClient } = require('mongodb');
 const app = express();
 const port = 3000;
 
-// Replace with your MongoDB Atlas connection string
-const mongoUri = process.env.MONGO_URI;
+const mongoUri = process.env.MONGO_URI; // Replace with your MongoDB Atlas connection string or Variable in .env file
 
-app.use(express.static('.'));
+app.use(express.static('frontend'));
 app.use(express.json());
 
 const client = new MongoClient(mongoUri);
